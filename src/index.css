@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Noto Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-body: "Noto Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-label: "Manrope", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Brand Colors */
+  --color-surface: #FFF9ED; /* Papiro Cremoso */
+  --color-on-surface: #1F1C0B; /* Obsidiana Orgánica */
+  --color-primary: #B38B4D; /* Ocre Alquimia */
+  --color-primary-dark: #7A581F; /* Tierra Quemada */
+  --color-primary-container: #FFF9ED;
+  --color-on-primary-container: #1F1C0B;
+  --color-turquesa: #14B8A6; /* Turquesa Místico */
+  --color-fucsia: #D81B60; /* Fucsia Pasión */
+  
+  /* Additional Structure */
+  --color-on-surface-variant: #7A581F; /* Tierra Quemada for secondary text */
+  --color-surface-container-low: #ffffff;
+  --color-surface-container-highest: #FDF4E3; /* Slightly darker than surface */
+  --color-outline: #B38B4D;
+  --color-outline-variant: #e5ccaa; /* Lighter ocre */
+  --color-surface-tint: #1F1C0B;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+}
+
+.grainy-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* Glassmorphism utility */
+.glass-surface {
+  background-color: rgba(255, 249, 237, 0.85); /* #FFF9ED with opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.crystal-panel {
+  backdrop-filter: blur(20px);
+  background: linear-gradient(135deg, rgba(255, 249, 237, 0.1) 0%, rgba(255, 249, 237, 0.05) 100%);
+  border: 1px solid rgba(210, 196, 180, 0.1);
+}
+
+.grain-overlay {
+  pointer-events: none;
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  z-index: 50;
+  mix-blend-mode: overlay;
+}
+
+.stars-bg {
+  background: radial-gradient(circle at center, #1c1917 0%, #0c0a09 100%);
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.energy-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: energyDash 10s linear infinite;
+}
+
+@keyframes energyDash {
+  to { stroke-dashoffset: 0; }
+}
+
+.pulse-core {
+  animation: pulseLight 4s ease-in-out infinite;
+}
+
+@keyframes pulseLight {
+  0%, 100% { transform: scale(1); opacity: 0.8; filter: blur(8px); }
+  50% { transform: scale(1.2); opacity: 1; filter: blur(12px); }
+}
+
+/* Gradient Buttons */
+.btn-alquimia {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  color: #FFF9ED;
+  box-shadow: 0 4px 15px rgba(122, 88, 31, 0.3);
+}
+
+.btn-alquimia:hover {
+  background: linear-gradient(135deg, #664716, var(--color-primary-dark));
+  box-shadow: 0 6px 20px rgba(122, 88, 31, 0.4);
+}
+
+@keyframes mandalaPulse {
+  0% { filter: drop-shadow(0 0 15px var(--color-turquesa)); }
+  50% { filter: drop-shadow(0 0 35px var(--color-fucsia)); }
+  100% { filter: drop-shadow(0 0 15px var(--color-turquesa)); }
+}
+
+.mandala-glow {
+  animation: mandalaPulse 8s infinite alternate ease-in-out;
+}
+
